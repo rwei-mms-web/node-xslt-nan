@@ -1,21 +1,28 @@
 {
-  "name": "node_xslt",
-  "homepage": "https://github.com/bsuh/node_xslt",
-  "description": "A simple XSLT package for node.js",
-  "version": "0.1.9",
-  "main": "./build/Release/node_xslt",
+  "name": "node_xslt_nan",
+  "homepage": "https://github.com/rwei-mms-web/node_xslt_nan",
+  "description": "Rebuild of node_xslt using nan",
+  "version": "0.0.1",
+  "main": "./build/Release/node_xslt_nan",
   "engines": {
     "node": ">=0.1.93"
   },
   "scripts": {
     "preinstall": "node-gyp rebuild"
-  },
-  "authors": [{
-    "name": "Brian Suh",
-    "email": "brian.j.suh@gmail.com"
-  }],
+  },  
+  "authors": [
+    {
+      "name": "Ran Wei",
+      "email": "weiran.g@gmail.com"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/bsuh/node_xslt.git"
-  }
+    "url": "git://github.com/rwei-mms-web/node_xslt_nan.git"
+  },
+  "dependencies": {
+    "bindings": "~1.2.1",
+    "nan": "^2.5.1"
+  },
+  "gypfile": true
 }

@@ -1,18 +1,20 @@
-# node_xslt
+# node_xslt_nan
+
+Rebuild of node_xslt using NAN.
 
 ## Installation
 ```
-npm install node_xslt --save
+npm install node_xslt_nan --save
 ```
 
 **Or:**
 
-In the root directory, run `node-gyp rebuild` to generate `./build/Release/node_xslt.node`
+In the root directory, run `node-gyp rebuild` to generate `./build/Release/node_xslt_nan.node`
 
 Then:
 
 ```JS
-var xslt = require('node_xslt')
+var xslt = require('node_xslt_nan')
 ```
 
 ## Requirements
