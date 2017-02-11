@@ -20,5 +20,6 @@
         "cstdlib": "cpp",
         "cstdio": "cpp",
         "new": "cpp"
-    }
+    },
+    "python.formatting.provider": "autopep8"
 }

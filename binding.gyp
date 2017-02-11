@@ -1,6 +1,7 @@
 {
     "targets": [{
         "target_name": "node_xslt_nan",
+        "product_extension": "node",
         "sources": [ "node_xslt_nan.cc" ],
         "cflags": ["<!(xml2-config --cflags)", "-fexceptions -w"],
         "cflags_cc": ["<!(xml2-config --cflags)", "-fexceptions -w"],
