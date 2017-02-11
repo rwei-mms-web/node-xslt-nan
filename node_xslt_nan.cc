@@ -19,12 +19,13 @@ void freeArray(char **array, int size)
 }
 
 NAN_METHOD(transform) {
-    v8::String::Utf8Value xmlStr(info[0]);
-    v8::String::Utf8Value xsltStr(info[1]);
+    v8::String::Utf8Value xmlStr(info[0]);//xml string
+    v8::String::Utf8Value xsltStr(info[1]);//xslt string
 
     xmlDocPtr xmlDoc = xmlReadMemory(*xmlStr, xmlStr.length(), NULL, "UTF-8", 0);
+
     if (!xmlDoc) {
-        return Nan::ThrowError("Failed to parse XML");
+        return Nan::ThrowError("Failed to parse XML document");
     }
 
     xmlDocPtr xsltDoc = xmlReadMemory(*xsltStr, xsltStr.length(), NULL, "UTF-8", 0);
@@ -34,6 +35,7 @@ NAN_METHOD(transform) {
     }    
 
     xsltStylesheetPtr xslt = xsltParseStylesheetDoc(xsltDoc);
+    
     if (!xslt) {
         return Nan::ThrowError("Failed to parse stylesheet");
     }
