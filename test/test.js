@@ -23,7 +23,7 @@ try {
     var result = addon.transform(xmlFs, xsltFs);
     console.log(result);
 } catch (e) {
-    console.log(e);
+    console.error(e);
 }
 
 //load testing
