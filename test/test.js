@@ -1,8 +1,8 @@
 "use strict";
-//require('heapdump');
+
 var fs = require('fs');
-var addon = require('bindings')('node-xslt-transform');
-var memwatch = require('memwatch-next');
+var addon = require('../build/Release/node-xslt-transform');
+// var memwatch = require('memwatch-next');
 
 var xmlFs = fs.readFileSync('./test/xmltest.xml', 'utf8');
 var xsltFs = fs.readFileSync('./test/xslttest.xslt', 'utf8');

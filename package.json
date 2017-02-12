@@ -20,12 +20,8 @@
     "type": "git",
     "url": "git://github.com/rwei-mms-web/node-xslt-transform.git"
   },
-  "dependencies": {
-    "bindings": "~1.2.1",
-    "heapdump": "^0.3.7",
-    "memwatch-next": "^0.3.0",
-    "nan": "^2.5.1",
-    "segfault-handler": "^1.0.0"
+  "dependencies": {    
+    "nan": "^2.5.1"
   },
   "gypfile": true
 }
