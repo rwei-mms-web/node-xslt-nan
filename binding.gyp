@@ -1,8 +1,8 @@
 {
     "targets": [{
-        "target_name": "node_xslt_nan",
+        "target_name": "node-xslt-transform",
         "product_extension": "node",
-        "sources": [ "node_xslt_nan.cc" ],
+        "sources": [ "node-xslt-transform.cc" ],
         "cflags": ["<!(xml2-config --cflags)", "-fexceptions -w"],
         "cflags_cc": ["<!(xml2-config --cflags)", "-fexceptions -w"],
         "xcode_settings": {

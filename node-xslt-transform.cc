@@ -88,4 +88,4 @@ NAN_MODULE_INIT(init)
              Nan::GetFunction(Nan::New<v8::FunctionTemplate>(transform)).ToLocalChecked());
 }
 
-NODE_MODULE(node_xslt_nan, init)
+NODE_MODULE(node_xslt_transform, init)

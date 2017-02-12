@@ -1,7 +1,7 @@
 "use strict";
 //require('heapdump');
 var fs = require('fs');
-var addon = require('bindings')('node_xslt_nan');
+var addon = require('bindings')('node-xslt-transform');
 var memwatch = require('memwatch-next');
 
 var xmlFs = fs.readFileSync('./test/xmltest.xml', 'utf8');

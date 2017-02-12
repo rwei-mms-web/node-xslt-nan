@@ -1,9 +1,9 @@
 {
   "name": "node_xslt_nan",
-  "homepage": "https://github.com/rwei-mms-web/node_xslt_nan",
-  "description": "Rebuild of node_xslt using nan",
+  "homepage": "https://github.com/rwei-mms-web/node-xslt-transform",
+  "description": "Forked from node_xslt(https://github.com/bsuh/node_xslt/blob/master/node_xslt.cc). Code is simplified and rewritten using nodejs/nan.",
   "version": "0.0.1",
-  "main": "./build/Release/node_xslt_nan",
+  "main": "./build/Release/node-xslt-transform",
   "engines": {
     "node": ">=0.1.93"
   },
@@ -13,12 +13,12 @@
   "authors": [
     {
       "name": "Ran Wei",
-      "email": "weiran.g@gmail.com"
+      "email": "rwei@mms.org"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/rwei-mms-web/node_xslt_nan.git"
+    "url": "git://github.com/rwei-mms-web/node-xslt-transform.git"
   },
   "dependencies": {
     "bindings": "~1.2.1",

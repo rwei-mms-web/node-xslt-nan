@@ -1,4 +1,4 @@
-# node_xslt_nan
+# node-xslt-transform
 
 This repo is forked from node_xslt. Code is simplified and rewritten using nodejs/nan.
 
@@ -6,12 +6,12 @@ Tested with node versions: 0.10.36, 0.12.18, 4.3.2, 6.9.4, 7.5.0.
 
 ## Installation
 ```
-npm install node_xslt_nan --save
+npm install node-xslt-transform --save
 ```
 
 **Or:**
 
-In the root directory, run `node-gyp rebuild` to generate `./build/Release/node_xslt_nan.node`
+In the root directory, run `node-gyp rebuild` to generate `./build/Release/node-xslt-transform.node`
 
 Targeting different node versions
 `node-gyp --target=v0.12.18 rebuild`
@@ -21,7 +21,7 @@ Then:
 
 ```JS
 
-var xslt = require('node_xslt_nan');
+var xslt = require('node-xslt-transform');
 var transformed = xslt.transform('xml content','xslt content');
 
 ```
