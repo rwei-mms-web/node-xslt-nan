@@ -9,15 +9,6 @@
 
 using namespace Nan;    
 
-void freeArray(char **array, int size)
-{
-    for (int i = 0; i < size; i++)
-    {
-        free(array[i]);
-    }
-    free(array);
-}
-
 NAN_METHOD(transform) {
     v8::String::Utf8Value xmlStr(info[0]);//xml string
     v8::String::Utf8Value xsltStr(info[1]);//xslt string
@@ -40,18 +31,9 @@ NAN_METHOD(transform) {
         return Nan::ThrowError("Failed to parse stylesheet");
     }
 
-    char **params = (char **)malloc(sizeof(char *) * (1));
-    if (!params) {
-        return Nan::ThrowError("Failed to allocate memory");
-    }
-
-    memset(params, 0, sizeof(char *) * (1));
-
-    ON_BLOCK_EXIT(freeArray, params, 0);
-
     try
     {
-        xmlDocPtr result = xsltApplyStylesheet(xslt, xmlDoc, (const char **)params);
+        xmlDocPtr result = xsltApplyStylesheet(xslt, xmlDoc, NULL);
 
         if (!result) {
             return Nan::ThrowError("Failed to apply stylesheet");
