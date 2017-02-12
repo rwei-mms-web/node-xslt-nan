@@ -1,5 +1,5 @@
 {
-  "name": "node_xslt_nan",
+  "name": "node-xslt-transform",
   "homepage": "https://github.com/rwei-mms-web/node-xslt-transform",
   "description": "Forked from node_xslt(https://github.com/bsuh/node_xslt/blob/master/node_xslt.cc). Code is simplified and rewritten using nodejs/nan.",
   "version": "0.0.1",
