@@ -7,8 +7,10 @@
   "engines": {
     "node": ">=0.1.93"
   },
-  "scripts": {
-    "preinstall": "node-gyp rebuild"
+"scripts": {    
+    "install": "node-gyp rebuild",
+    "build": "node-gyp rebuild",
+    "test": "node ./test/test.js"
   },
   "authors": [
     {
