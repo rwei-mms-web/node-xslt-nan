@@ -1,6 +1,6 @@
 # node_xslt_nan
 
-Rebuild of node_xslt using NAN.
+Forked from node_xslt and recompiled using nodejs/nan.
 
 ## Installation
 ```
@@ -28,23 +28,13 @@ var xslt = require('node_xslt_nan')
 
 | Method | Arguments | Return | Description
 | :---: | :---: | :---: | ---
-| `readXsltString` | `string` | `Stylesheet {}` | Uses the specified XSLT for transformation
-| `readXsltFile` | `string` | `Stylesheet {}` | Loads the XSLT from file
-| `readXmlString`, `readHtmlString` | `string` | `Document {}` | Imports XML/HTML from string
-| `readXmlFile`, `readHtmlFile` | string | `Document {}` | Imports the XML/HTML file
 | `transform` | `Stylesheet`, `Document`, `string[]` | **string** | Transforms the document
 
 
 ### Example
 ```JS
 xslt.transform(
-  stylesheet,
-  document,
-  [
-    'paramName',
-    'paramValue',
-    'paramName',
-    'paramValue'
-  ]
+  xsltString,
+  xmlString
 )
 ```

@@ -1,4 +1,5 @@
 #include <nan.h>
+#include <iostream>
 #include <libxml/HTMLparser.h>
 #include <libxslt/xslt.h>
 #include <libxslt/transform.h>
@@ -7,35 +8,40 @@
 #include <string.h>
 #include "scopeguard.h"
 
-using namespace Nan;    
+using namespace Nan;
 
-NAN_METHOD(transform) {
-    v8::String::Utf8Value xmlStr(info[0]);//xml string
-    v8::String::Utf8Value xsltStr(info[1]);//xslt string
-
-    xmlDocPtr xmlDoc = xmlReadMemory(*xmlStr, xmlStr.length(), NULL, "UTF-8", 0);
-
-    if (!xmlDoc) {
-        return Nan::ThrowError("Failed to parse XML document");
-    }
-
-    xmlDocPtr xsltDoc = xmlReadMemory(*xsltStr, xsltStr.length(), NULL, "UTF-8", 0);
-
-    if (!xsltDoc) {
-        return Nan::ThrowError("Failed to parse XSLT document");
-    }    
-
-    xsltStylesheetPtr xslt = xsltParseStylesheetDoc(xsltDoc);
-    
-    if (!xslt) {
-        return Nan::ThrowError("Failed to parse stylesheet");
-    }
+NAN_METHOD(transform)
+{
+    v8::String::Utf8Value xmlStr(info[0]);
+    v8::String::Utf8Value xsltStr(info[1]);
 
     try
     {
+        xmlDocPtr xmlDoc = xmlReadMemory(*xmlStr, xmlStr.length(), NULL, "UTF-8", 0);
+
+        if (!xmlDoc)
+        {
+            return Nan::ThrowError("Failed to parse XML document");
+        }
+
+        xmlDocPtr xsltDoc = xmlReadMemory(*xsltStr, xsltStr.length(), NULL, "UTF-8", 0);
+
+        if (!xsltDoc)
+        {
+            return Nan::ThrowError("Failed to parse XSLT document");
+        }
+
+        xsltStylesheetPtr xslt = xsltParseStylesheetDoc(xsltDoc);
+
+        if (!xslt)
+        {
+            return Nan::ThrowError("Failed to parse stylesheet");
+        }
+
         xmlDocPtr result = xsltApplyStylesheet(xslt, xmlDoc, NULL);
 
-        if (!result) {
+        if (!result)
+        {
             return Nan::ThrowError("Failed to apply stylesheet");
         }
 
@@ -43,7 +49,7 @@ NAN_METHOD(transform) {
 
         ON_BLOCK_EXIT(xmlFreeDoc, xmlDoc);
 
-        ON_BLOCK_EXIT(xsltFreeStylesheet, xslt);    
+        ON_BLOCK_EXIT(xsltFreeStylesheet, xslt);
 
         xmlChar *doc_ptr;
 
@@ -51,25 +57,35 @@ NAN_METHOD(transform) {
 
         xsltSaveResultToString(&doc_ptr, &doc_len, result, xslt);
 
-        if (doc_ptr) {
+        if (doc_ptr)
+        {
             ON_BLOCK_EXIT(xmlFree, doc_ptr);
-            
+
             info.GetReturnValue().Set(Nan::New<v8::String>((const char *)doc_ptr, doc_len).ToLocalChecked());
         }
-        else {
+        else
+        {
             info.GetReturnValue().Set(Nan::EmptyString());
         }
     }
-    catch (v8::Handle<v8::Value> err)
+    catch (const std::runtime_error &re)
     {
-        info.GetReturnValue().Set(err);
+        return Nan::ThrowError(re.what());
+    }
+    catch (const std::exception &ex)
+    {
+        return Nan::ThrowError(ex.what());
+    }
+    catch (...)
+    {
+        return Nan::ThrowError("unknown error");
     }
 }
 
 NAN_MODULE_INIT(init)
 {
     Nan::Set(target, Nan::New("transform").ToLocalChecked(),
-             Nan::GetFunction(Nan::New<v8::FunctionTemplate>(transform)).ToLocalChecked());  
+             Nan::GetFunction(Nan::New<v8::FunctionTemplate>(transform)).ToLocalChecked());
 }
 
 NODE_MODULE(node_xslt_nan, init)

@@ -4,23 +4,8 @@ var fs = require('fs');
 var addon = require('bindings')('node_xslt_nan');
 var memwatch = require('memwatch-next');
 
-var xmlFs = fs.readFileSync('./xmltest.xml', 'utf8');
-var xsltFs = fs.readFileSync('./xslttest.xslt', 'utf8');
-
-// memwatch.on('leak', function (info) {
-//     console.error(info);
-//     if (!hd) {
-//         hd = new memwatch.HeapDiff();
-//     } else {
-//         var diff = hd.end();
-//         console.error(util.inspect(diff, true, null));
-//         hd = null;
-//     }
-// });
-
-// memwatch.on('stats', function (stats) {
-//     console.log(stats);
-// });
+var xmlFs = fs.readFileSync('./test/xmltest.xml', 'utf8');
+var xsltFs = fs.readFileSync('./test/xslttest.xslt', 'utf8');
 
 function GcThenGetHeapSize() {    
     try {
@@ -34,8 +19,17 @@ function GcThenGetHeapSize() {
     console.log("Program is using " + heapUsed + " bytes of Heap.")
 }
 
-setInterval(() => {
+try {
     var result = addon.transform(xmlFs, xsltFs);
     console.log(result);
-}, 2);
-setInterval(GcThenGetHeapSize, 2000);
+} catch (e) {
+    console.log(e);
+}
+
+//load testing
+// setInterval(() => {
+//     var result = addon.transform(xmlFs, xsltFs);
+//     console.log(result);
+// }, 2);
+
+// setInterval(GcThenGetHeapSize, 2000);
