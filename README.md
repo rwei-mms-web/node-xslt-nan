@@ -19,7 +19,7 @@ var transformed = xslt.transform('xml content','xslt content');
 ```
 
 ## Requirements
-
+* GCC compiler.
 * [libxml2](http://www.xmlsoft.org/) (libxml2-dev package for Debian-based distros)
 * [libxslt](http://xmlsoft.org/xslt/index.html) (libxslt-dev package for Debian-based distros)
 * [libexslt](http://xmlsoft.org/xslt/EXSLT/) (libxslt-dev package for Debian-based distros)
